@@ -66,4 +66,23 @@ class Actor extends Db {
 
         return;
     }
+
+    public static function findAll() {
+        return Db::dbFind(self::TABLE_NAME);
+    }
+
+    public static function find(array $request) {
+        return Db::dbFind(self::TABLE_NAME, $request);
+    }
+
+    public static function findOne(int $id) {
+
+        $element = Db::dbFind(self::TABLE_NAME, [
+            ['id', '=', $id]
+        ]);
+
+        $act = new Actor($element['firstname'], $element['lastname']);
+
+        return $act;
+    }
 }

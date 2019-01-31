@@ -48,6 +48,8 @@ class Db {
 
         $response = $bdd->prepare($req);
 
+        var_dump($req, $data);
+
         $response->execute($data);
 
         return $bdd->lastInsertId();
