@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?> | <?= WEBSITE_TITLE; ?></title>
 </head>
-<body style="background: url(<?= img_url('bg.jpg'); ?>)">
+<body style="background: url(<?= img_url('bg.jpg'); ?>); background-repeat: no-repeat; background-size: cover">
     <h1>Bienvenue !</h1>
 
     <ul>

@@ -86,7 +86,7 @@ class Actor extends Db {
         return Db::dbFind(self::TABLE_NAME, $request);
     }
 
-    public static function findOne(int $id) {
+    public static function findOne(int $id, bool $returnArray = false) {
 
         $element = Db::dbFind(self::TABLE_NAME, [
             ['id', '=', $id]
@@ -94,8 +94,10 @@ class Actor extends Db {
 
         $element = $element[0];
 
-        $cat = new Actor($element['firstname'], $element['lastname'], $element['id']);
+        if ($returnArray) { return $element; }
 
-        return $cat;
+        $act = new Actor($element['firstname'], $element['lastname'], $element['id']);
+
+        return $act;
     }
 }

@@ -125,7 +125,7 @@ class Db {
 
         $data = [];
 
-        while ($donnees = $response->fetch()) {
+        while ($donnees = $response->fetch(PDO::FETCH_ASSOC)) {
             $data[] = $donnees;
         }
 

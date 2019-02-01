@@ -32,8 +32,6 @@ class CategoriesController {
 
         $cat = Category::findOne($id);
 
-        var_dump($cat);
-
         view('categories.read', compact('cat', 'id'));
     }
 

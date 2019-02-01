@@ -138,7 +138,7 @@ class Movie extends Db {
         return Db::dbFind(self::TABLE_NAME, $request);
     }
 
-    public static function findOne(int $id) {
+    public static function findOne(int $id, bool $returnArray = false) {
 
         $element = Db::dbFind(self::TABLE_NAME, [
             ['id', '=', $id]
@@ -146,13 +146,22 @@ class Movie extends Db {
 
         $element = $element[0];
 
-        $date = new DateTime($element['release_date']);
+        if ($returnArray) {
+            return $element;
+        }
 
-        $category = Category::findOne($element['id_category']);
+        else {
 
-        $cat = new Movie($element['title'], $date, $element['plot'], $category);
+            $date = new DateTime($element['release_date']);
 
-        return $cat;
+            $category = Category::findOne($element['id_category']);
+
+            $mov = new Movie($element['title'], $date, $element['plot'], $category);
+
+            return $mov;
+
+        }
+        
     }
 
 

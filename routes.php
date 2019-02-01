@@ -21,5 +21,16 @@ $router->get('/actors/add',     'ActorsController@add');    // CREATE one : Form
 $router->post('/actors/save',   'ActorsController@save'); // CREATE one (action) : Action du formulaire d'un élément
 $router->get('/actors/(\d+)',   'ActorsController@read'); // SELECT one : Affichage d'un élément
 
+$router->get('/api/movies', 'ApiMoviesController@index');
+$router->get('/api/movies/(\d+)', 'ApiMoviesController@read');
+$router->get('/api/movies/category/(\d+)', 'ApiMoviesController@readByCategory');
+
+$router->get('/api/categories', 'ApiCategoriesController@index');
+$router->get('/api/categories/(\d+)', 'ApiCategoriesController@read');
+
+$router->get('/api/actors', 'ApiActorsController@index');
+$router->get('/api/actors/(\d+)', 'ApiActorsController@read');
+
+
 // Run it!
 $router->run();
