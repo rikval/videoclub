@@ -6,21 +6,30 @@
 require __DIR__ . '/vendor/autoload.php';
 
 /**
- * Require Config files
+ * Require Config files in the right order
  */
-require_once 'config/config.php';
-
-foreach( glob('config/*.php') as $config ) { require_once $config; }
-
-/**
- * Require Models
- */
-foreach( glob('models/*.php') as $model ) { require_once $model; }
+require 'config/aliases.php';
+require 'config/config.php';
+require 'config/helpers.php';
+require 'config/Db.php';
 
 /**
- * Require Controllers
+ * Autoload Classes
  */
-foreach( glob('controllers/*.php') as $controller ) { require_once $controller; }
+spl_autoload_register (function ($class) {
+
+    $sources = array_map(function($s) use ($class) {
+        return $s . '/' . $class . '.php';
+    },
+    CLASSES_SOURCES);
+    
+    foreach ($sources as $source) {
+        if (file_exists($source)) {
+            require_once $source;
+        } 
+    } 
+});
+
 
 /**
  * Require routes

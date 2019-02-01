@@ -10,9 +10,11 @@ class Actor extends Db {
 
     const TABLE_NAME = "Actor";
 
-    public function __construct(string $firstname, string $lastname) {
+    public function __construct(string $firstname, string $lastname, int $id = null) {
+
         $this->setFirstname($firstname);
         $this->setLastname($lastname);
+        $this->setId($id);
     }
 
     public function id() {
@@ -25,6 +27,15 @@ class Actor extends Db {
 
     public function lastname() {
         return $this->lastname;
+    }
+
+    public function fullname() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     public function setFirstname($firstname) {
@@ -81,8 +92,10 @@ class Actor extends Db {
             ['id', '=', $id]
         ]);
 
-        $act = new Actor($element['firstname'], $element['lastname']);
+        $element = $element[0];
 
-        return $act;
+        $cat = new Actor($element['firstname'], $element['lastname'], $element['id']);
+
+        return $cat;
     }
 }

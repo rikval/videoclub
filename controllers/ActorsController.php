@@ -4,38 +4,33 @@
 class ActorsController {
 
     public function index() {
-        /**
-         * Des traitements de données éventuels...
-         */
-        $listActs = Actor::findAll();
+
+        $actors = Actor::findAll();
         $title = "Acteurs";
 
-        /**
-         * Rendu de la View
-         */
-        include('./views/actors/index.php');
+        view('actors.index', compact('actors', 'title'));
     }
 
     public function add() {
 
-        include('./views/actors/add.php');
+        view('actors.add');
     }
 
     public function save() {
 
-        $act = new Actor($_POST['firstname'], $_POST['lastname']);
-        $act->save();
+        $actor = new Actor($_POST['firstname'], $_POST['lastname']);
+        $actor->save();
 
-        include('./views/actors/save.php');
+        $this->add();
+
+        view('actors.save', compact('actor'));
     }
 
     public function read($id) {
 
-        $act = Actor::findOne($id);
+        $actor = Actor::findOne($id);
 
-        var_dump($act);
-
-        include('./views/actors/read.php');
+        view('actors.read', compact('actor'));
     }
 
 }

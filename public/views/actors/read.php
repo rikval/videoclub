@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    Affichage de l'acteur id : <?= $id ?>
+
+    <h1><?= $actor->fullname() ?></h1>
 </body>
 </html>
