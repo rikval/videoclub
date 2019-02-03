@@ -112,7 +112,7 @@ class Category extends Db {
 
         if ($returnArray) { return $element; }
 
-        $cat = new Actor($element['firstname'], $element['lastname'], $element['id']);
+        $cat = new Category($element['title'], $element['description'], $element['id']);  
 
         return $cat;
     }
