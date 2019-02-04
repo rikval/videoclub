@@ -25,7 +25,7 @@ class CategoriesController {
         $cat = new Category($_POST['title'], $_POST['description']);
         $cat->save();
 
-        view('categories.save', 'cat');
+        view('categories.save', compact('cat'));
     }
 
     public function read($id) {
